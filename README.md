@@ -1,35 +1,30 @@
-Split App Backend
-Backend for splitting group expenses, built with Flask and SQLite (local) or PostgreSQL (deployed).
-Setup (Local)
+# Split App Backend
 
-Clone: git clone <your-repo-url>
-Install: pip install -r requirements.txt
-Run: python app.py
+## Overview
+A backend for splitting expenses among groups, with expense tracking and settlement calculations.
 
-API Endpoints
+## Setup (Local)
+1. Clone repo: `git clone <repo-url>`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run: `python app.py`
 
-GET /expenses: List all expenses
-POST /expenses: Add expense (amount, description, paid_by)
-PUT /expenses/:id: Update expense
-DELETE /expenses/:id: Delete expense
-GET /people: List all people
-GET /balances: Show balances (owes/owed)
-GET /settlements: Get optimized settlements
+## API Endpoints
+- `GET /expenses`: List all expenses.
+- `POST /expenses`: Add expense (fields: amount, description, paid_by).
+- `PUT /expenses/:id`: Update expense.
+- `DELETE /expenses/:id`: Delete expense.
+- `GET /people`: List all people.
+- `GET /balances`: Show balances (owes/owed).
+- `GET /settlements`: Get optimized settlement transactions.
 
-Deployment
+## Deployment
+- Hosted on Railway.app: `<deployed-url>`
+- Postman Collection: `<gist-url>`
 
-Hosted on Railway: <your-railway-url> (update after deployment)
-Postman Collection: <your-gist-url> (update after creating)
+## Settlement Logic
+- Balances: `total_spent_by_person - (total_expenses / num_people)`.
+- Settlements: Match debtors to creditors to minimize transactions.
 
-Settlement Logic
-
-Balances: total_spent_by_person - (total_expenses / num_people)
-Settlements: Minimize transactions by matching debtors to creditors
-Amounts rounded to 2 decimal places
-
-Limitations
-
-Assumes equal splits for expenses
-No support for percentage/exact amount splits
-No optional features (e.g., categories, recurring expenses)
-
+## Limitations
+- Assumes equal splits for simplicity.
+- No support for percentage/exact amount splits (optional feature omitted).
